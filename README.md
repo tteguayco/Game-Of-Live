@@ -1,1 +1,1 @@
-# Game-Of-Live-Simulator
+# John Horton Conway's Game of Live Simulator
