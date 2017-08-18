@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class MainWindow extends JFrame {
 	private static final int WINDOW_WIDTH = 500;
@@ -30,7 +32,22 @@ public class MainWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		MainWindow mainWindow = new MainWindow();
-		mainWindow.setVisible(true);
+		
+		try {
+			// Set the OS' default LAF
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			
+			MainWindow mainWindow = new MainWindow();
+			mainWindow.setVisible(true);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
 }
