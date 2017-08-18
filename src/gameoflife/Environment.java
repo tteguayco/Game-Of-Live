@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -15,13 +16,17 @@ public class Environment extends JPanel {
 	private static final double ENVIRONMENT_WIDTH = 80;
 	private static final double ENVIRONMENT_HEIGHT = 50;
 	
+	private boolean paintAliveCells;
+	
 	private double cellWidth;
 	private double cellHeight;
 	
 	private CellState[][] cells;
 	
 	public Environment() {
-		addMouseListener(new CellsListener());
+		paintAliveCells = true;
+		addMouseListener(new CellsClickListener());
+		addMouseMotionListener(new CellsDragListener());
 	}
 	
 	public void setUpEnviroment() {
@@ -82,25 +87,35 @@ public class Environment extends JPanel {
 		}
 	}
 	
-	private void changeCellState(int i, int j) {
-		if (cells[i][j] == CellState.ALIVE) {
-			cells[i][j] = CellState.DEAD;
-		} 
+	private void changeCellState(int clickX, int clickY) {
+		int cellRow = (int) (clickY / cellHeight);
+		int cellCol = (int) (clickX / cellWidth);
 		
-		else if (cells[i][j] == CellState.DEAD) {
-			cells[i][j] = CellState.ALIVE;	
+		if (paintAliveCells) {
+			cells[cellRow][cellCol] = CellState.ALIVE;
+		}
+		
+		else {
+			cells[cellRow][cellCol] = CellState.DEAD;
 		}
 	}
 	
-	private class CellsListener extends MouseAdapter {
+	private class CellsClickListener extends MouseAdapter {
+		
 		@Override
-	    public void mouseClicked(MouseEvent e) {
-			int cellRow = (int) (e.getY() / cellHeight);
-			int cellCol = (int) (e.getX() / cellWidth);
-			
-			changeCellState(cellRow, cellCol);
+		public void mouseClicked(MouseEvent e) {
+			changeCellState(e.getX(), e.getY());
 			repaint();
-	    }
+		}
+	}
+	
+	private class CellsDragListener extends MouseAdapter {
+		
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			changeCellState(e.getX(), e.getY());
+			repaint();
+		} 
 	}
 	
 	public double getCellWidth() {
@@ -117,5 +132,13 @@ public class Environment extends JPanel {
 
 	public void setCellHeight(double cellHeight) {
 		this.cellHeight = cellHeight;
+	}
+
+	public boolean isPaintAliveCells() {
+		return paintAliveCells;
+	}
+
+	public void setPaintAliveCells(boolean paintAliveCells) {
+		this.paintAliveCells = paintAliveCells;
 	}
 }

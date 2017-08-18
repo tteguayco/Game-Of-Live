@@ -3,6 +3,8 @@ package gameoflife;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -30,6 +32,28 @@ public class MainWindow extends JFrame {
 	    setLayout(new BorderLayout());
 	    add(buttonsPanel, BorderLayout.NORTH);
 	    add(environment, BorderLayout.CENTER);
+	    
+	    setListeners();
+	}
+	
+	private void setRadioButtonsListeners() {
+		buttonsPanel.getAliveCell().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				environment.setPaintAliveCells(true);
+			}
+		});
+		
+		buttonsPanel.getDeadCell().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				environment.setPaintAliveCells(false);
+			}
+		});
+	}
+	
+	private void setListeners() {
+		setRadioButtonsListeners();
 	}
 	
 	public void setUpConfigurations() {
@@ -41,6 +65,7 @@ public class MainWindow extends JFrame {
 		try {
 			// Set the OS' default LAF
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.put("Slider.paintValue", false);
 			
 			MainWindow mainWindow = new MainWindow();
 			mainWindow.setVisible(true);
