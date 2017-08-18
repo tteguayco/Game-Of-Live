@@ -17,9 +17,9 @@ public class MainWindow extends JFrame {
 	private ButtonsPanel buttonsPanel;
 	private Environment environment;
 	
-	public MainWindow()
-	{
+	public MainWindow() {
 		buttonsPanel = new ButtonsPanel();
+		environment = new Environment();
 		
 		setTitle(TITLE);
 		setLocationRelativeTo(null);
@@ -29,6 +29,11 @@ public class MainWindow extends JFrame {
 	    
 	    setLayout(new BorderLayout());
 	    add(buttonsPanel, BorderLayout.NORTH);
+	    add(environment, BorderLayout.CENTER);
+	}
+	
+	public void setUpConfigurations() {
+		environment.setUpEnviroment();
 	}
 	
 	public static void main(String[] args) {
@@ -39,6 +44,7 @@ public class MainWindow extends JFrame {
 			
 			MainWindow mainWindow = new MainWindow();
 			mainWindow.setVisible(true);
+			mainWindow.setUpConfigurations();
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

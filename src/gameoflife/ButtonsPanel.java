@@ -13,8 +13,7 @@ public class ButtonsPanel extends JPanel {
 	private JButton resetButton;
 	private JSlider speedSlider;
 	
-	public ButtonsPanel()
-	{
+	public ButtonsPanel() {
 		startButton = new JButton("START");
 		stepButton = new JButton("STEP");
 		resetButton = new JButton("RESET");
@@ -25,5 +24,37 @@ public class ButtonsPanel extends JPanel {
 		add(stepButton);
 		add(resetButton);
 		add(speedSlider);
+	}
+
+	public JButton getStartButton() {
+		return startButton;
+	}
+
+	public void setStartButton(JButton startButton) {
+		this.startButton = startButton;
+	}
+
+	public JButton getStepButton() {
+		return stepButton;
+	}
+
+	public void setStepButton(JButton stepButton) {
+		this.stepButton = stepButton;
+	}
+
+	public JButton getResetButton() {
+		return resetButton;
+	}
+
+	public void setResetButton(JButton resetButton) {
+		this.resetButton = resetButton;
+	}
+
+	public JSlider getSpeedSlider() {
+		return speedSlider;
+	}
+
+	public void setSpeedSlider(JSlider speedSlider) {
+		this.speedSlider = speedSlider;
 	}
 }
