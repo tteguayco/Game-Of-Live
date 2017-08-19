@@ -27,6 +27,9 @@ public class ButtonsPanel extends JPanel {
 	private JRadioButton aliveCell;
 	private JRadioButton deadCell;
 	
+	private JLabel generationCountLabel;
+	private int generationCount;
+	
 	public ButtonsPanel() {
 		startButton = new JButton("START");
 		stepButton = new JButton("STEP");
@@ -34,6 +37,8 @@ public class ButtonsPanel extends JPanel {
 		speedSlider = new JSlider(MIN_SLIDER_VAL, MAX_SLIDER_VAL);
 		aliveCell = new JRadioButton("Alive");
 		deadCell = new JRadioButton("Dead");
+		generationCount = 0;
+		generationCountLabel = new JLabel(String.valueOf(generationCount));
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(aliveCell);
@@ -58,6 +63,11 @@ public class ButtonsPanel extends JPanel {
 		add(new JLabel("Draw cell: "));
 		add(aliveCell);
 		add(deadCell);
+		add(new JSeparator());
+		add(new JSeparator());
+		add(new JSeparator());
+		add(new JLabel("Generation: "));
+		add(generationCountLabel);
 	}
 
 	public void changeStartButtonText() {
@@ -68,6 +78,16 @@ public class ButtonsPanel extends JPanel {
 		else if (startButton.getText().equals(START_BTN_RUNNING_TEXT)) {
 			startButton.setText(START_BTN_DEFAULT_TEXT);
 		}
+	}
+	
+	public void resetGenerationCount() {
+		generationCount = 0;
+		generationCountLabel.setText(String.valueOf(generationCount));
+	}
+	
+	public void increaseGenerationCount() {
+		generationCount++;
+		generationCountLabel.setText(String.valueOf(generationCount));
 	}
 	
 	public JButton getStartButton() {

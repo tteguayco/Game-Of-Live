@@ -30,7 +30,7 @@ public class MainWindow extends JFrame {
 		timer = new Timer(INITIAL_SPEED, new ActionListener() {
 			@Override
 		    public void actionPerformed(ActionEvent ae) {
-		        environment.runGeneration();
+		        runGeneration();
 		    }
 		});
 		
@@ -54,6 +54,7 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				environment.reset();
 				stopExecution();
+				buttonsPanel.resetGenerationCount();
 			}
 		});
 		
@@ -61,7 +62,7 @@ public class MainWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				environment.runGeneration();
+				runGeneration();
 			}
 		});
 		
@@ -117,6 +118,11 @@ public class MainWindow extends JFrame {
 			buttonsPanel.changeStartButtonText();
 			timer.stop();
 		}
+	}
+	
+	private void runGeneration() {
+		environment.runGeneration();
+		buttonsPanel.increaseGenerationCount();
 	}
 	
 	public void setUpConfigurations() {
