@@ -14,9 +14,6 @@ import javax.swing.event.ChangeListener;
 public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	//private static final int WINDOW_WIDTH = 500;
-	//private static final int WINDOW_HEIGHT = 500;
-	
 	private static final String TITLE = "John Conway's Game of Life";
 	
 	private static final int INITIAL_SPEED = 100;
