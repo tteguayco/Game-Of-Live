@@ -12,6 +12,9 @@ import javax.swing.JSlider;
 
 public class ButtonsPanel extends JPanel {
 
+	private static final String START_BTN_DEFAULT_TEXT = "START";
+	private static final String START_BTN_RUNNING_TEXT = "STOP";
+	
 	private JButton startButton;
 	private JButton stepButton;
 	private JButton resetButton;
@@ -51,6 +54,16 @@ public class ButtonsPanel extends JPanel {
 		add(deadCell);
 	}
 
+	public void changeStartButtonText() {
+		if (startButton.getText().equals(START_BTN_DEFAULT_TEXT)) {
+			startButton.setText(START_BTN_RUNNING_TEXT);
+		}
+		
+		else if (startButton.getText().equals(START_BTN_RUNNING_TEXT)) {
+			startButton.setText(START_BTN_DEFAULT_TEXT);
+		}
+	}
+	
 	public JButton getStartButton() {
 		return startButton;
 	}

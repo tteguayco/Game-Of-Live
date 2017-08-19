@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -16,12 +17,24 @@ public class MainWindow extends JFrame {
 	
 	private static final String TITLE = "John Conway's Game of Life";
 	
+	private static final double INITIAL_SPEED = 100;
+	
 	private ButtonsPanel buttonsPanel;
 	private Environment environment;
+	private Timer timer;
+	private double speed;
 	
 	public MainWindow() {
 		buttonsPanel = new ButtonsPanel();
 		environment = new Environment();
+		speed = INITIAL_SPEED;
+		
+		timer = new Timer((int) speed, new ActionListener() {
+			@Override
+		    public void actionPerformed(ActionEvent ae) {
+		        environment.runGeneration();
+		    }
+		});
 		
 		setTitle(TITLE);
 		setLocationRelativeTo(null);
@@ -50,6 +63,21 @@ public class MainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				environment.runGeneration();
+			}
+		});
+		
+		buttonsPanel.getStartButton().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				buttonsPanel.changeStartButtonText();
+				
+				if (!timer.isRunning()) {
+					timer.start();
+				}
+				
+				else {
+					timer.stop();
+				}
 			}
 		});
 	}

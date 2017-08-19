@@ -201,12 +201,16 @@ public class Environment extends JPanel {
 		int cellRow = (int) (clickY / cellHeight);
 		int cellCol = (int) (clickX / cellWidth);
 		
-		if (paintAliveCells) {
-			cells[cellRow][cellCol] = CellState.ALIVE;
-		}
-		
-		else {
-			cells[cellRow][cellCol] = CellState.DEAD;
+		if (cellRow >= 0 && cellRow < ENVIRONMENT_HEIGHT && 
+				cellCol >= 0 && cellCol < ENVIRONMENT_WIDTH) {
+			
+			if (paintAliveCells) {
+				cells[cellRow][cellCol] = CellState.ALIVE;
+			}
+			
+			else {
+				cells[cellRow][cellCol] = CellState.DEAD;
+			}
 		}
 	}
 	
