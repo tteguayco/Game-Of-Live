@@ -11,7 +11,8 @@ import javax.swing.JSeparator;
 import javax.swing.JSlider;
 
 public class ButtonsPanel extends JPanel {
-
+	private static final long serialVersionUID = 1L;
+	
 	private static final String START_BTN_DEFAULT_TEXT = "START";
 	private static final String START_BTN_RUNNING_TEXT = "STOP";
 	
@@ -40,6 +41,7 @@ public class ButtonsPanel extends JPanel {
 		
 		aliveCell.setSelected(true);
 		speedSlider.setInverted(true);
+		speedSlider.setFocusable(false);
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 		add(startButton);

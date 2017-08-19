@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
 public class Environment extends JPanel {
-	private static final Color BACKGROUND_COLOR = Color.BLACK;
+	private static final long serialVersionUID = 1L;
+	
 	private static final Color ALIVE_CELL_COLOR = Color.BLACK;
 	private static final Color DEAD_CELL_COLOR = Color.WHITE;
 	

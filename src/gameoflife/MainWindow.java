@@ -1,8 +1,6 @@
 package gameoflife;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,8 +12,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
-	private static final int WINDOW_WIDTH = 500;
-	private static final int WINDOW_HEIGHT = 500;
+	private static final long serialVersionUID = 1L;
+	
+	//private static final int WINDOW_WIDTH = 500;
+	//private static final int WINDOW_HEIGHT = 500;
 	
 	private static final String TITLE = "John Conway's Game of Life";
 	
@@ -56,6 +56,7 @@ public class MainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				environment.reset();
+				stopExecution();
 			}
 		});
 		
@@ -112,6 +113,13 @@ public class MainWindow extends JFrame {
 		setButtonsListeners();
 		setSliderListener();
 		setRadioButtonsListeners();
+	}
+	
+	private void stopExecution() {
+		if (timer.isRunning()) {
+			buttonsPanel.changeStartButtonText();
+			timer.stop();
+		}
 	}
 	
 	public void setUpConfigurations() {
