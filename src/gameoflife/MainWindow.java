@@ -36,6 +36,24 @@ public class MainWindow extends JFrame {
 	    setListeners();
 	}
 	
+	private void setButtonsListeners() {
+		buttonsPanel.getResetButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				environment.reset();
+			}
+		});
+		
+		buttonsPanel.getStepButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				environment.runGeneration();
+			}
+		});
+	}
+	
 	private void setRadioButtonsListeners() {
 		buttonsPanel.getAliveCell().addActionListener(new ActionListener() {
 			@Override
@@ -53,6 +71,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	private void setListeners() {
+		setButtonsListeners();
 		setRadioButtonsListeners();
 	}
 	
