@@ -102,44 +102,49 @@ public class Environment extends JPanel {
 	private int numberOfNeighborsForCell(int aRow, int aCol) {
 		int numberOfNeighbors = 0;
 		
+		int upRow = ((aRow - 1) + (int) ENVIRONMENT_HEIGHT) % (int) ENVIRONMENT_HEIGHT;
+		int downRow = (aRow + 1) % (int) ENVIRONMENT_HEIGHT;
+		int leftCol = ((aCol - 1) + (int) ENVIRONMENT_WIDTH) % (int) ENVIRONMENT_WIDTH;
+		int rightCol = (aCol + 1) % (int) ENVIRONMENT_WIDTH;
+		
 		// Up
-		if (aRow > 0 && cells[aRow - 1][aCol] == CellState.ALIVE) {
+		if (/*aRow > 0 &&*/ cells[upRow][aCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Down
-		if (aRow < ENVIRONMENT_HEIGHT - 1 && cells[aRow + 1][aCol] == CellState.ALIVE) {
+		if (/*aRow < ENVIRONMENT_HEIGHT - 1 &&*/ cells[downRow][aCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Left
-		if (aCol > 0 && cells[aRow][aCol - 1] == CellState.ALIVE) {
+		if (/*aCol > 0 &&*/ cells[aRow][leftCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Right
-		if (aCol < ENVIRONMENT_WIDTH - 1 && cells[aRow][aCol + 1] == CellState.ALIVE) {
+		if (/*aCol < ENVIRONMENT_WIDTH - 1 &&*/ cells[aRow][rightCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Up left
-		if (aRow > 0 && aCol > 0 && cells[aRow - 1][aCol - 1] == CellState.ALIVE) {
+		if (/*aRow > 0 && aCol > 0 &&*/ cells[upRow][leftCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Up right
-		if (aRow > 0 && aCol < ENVIRONMENT_WIDTH - 1 && cells[aRow - 1][aCol + 1] == CellState.ALIVE) {
+		if (/*aRow > 0 && aCol < ENVIRONMENT_WIDTH - 1 &&*/ cells[upRow][rightCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Down left
-		if (aRow < ENVIRONMENT_HEIGHT - 1 && aCol > 0 && cells[aRow + 1][aCol - 1] == CellState.ALIVE) {
+		if (/*aRow < ENVIRONMENT_HEIGHT - 1 && aCol > 0 &&*/ cells[downRow][leftCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
 		// Down right
-		if (aRow < ENVIRONMENT_HEIGHT - 1 && aCol < ENVIRONMENT_WIDTH - 1 &&
-				cells[aRow + 1][aCol + 1] == CellState.ALIVE) {
+		if (/*aRow < ENVIRONMENT_HEIGHT - 1 && aCol < ENVIRONMENT_WIDTH - 1 &&*/
+				cells[downRow][rightCol] == CellState.ALIVE) {
 			numberOfNeighbors++;
 		}
 		
