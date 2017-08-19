@@ -15,6 +15,9 @@ public class ButtonsPanel extends JPanel {
 	private static final String START_BTN_DEFAULT_TEXT = "START";
 	private static final String START_BTN_RUNNING_TEXT = "STOP";
 	
+	private static final int MAX_SLIDER_VAL = 10;
+	private static final int MIN_SLIDER_VAL = 1;
+	
 	private JButton startButton;
 	private JButton stepButton;
 	private JButton resetButton;
@@ -27,7 +30,7 @@ public class ButtonsPanel extends JPanel {
 		startButton = new JButton("START");
 		stepButton = new JButton("STEP");
 		resetButton = new JButton("RESET");
-		speedSlider = new JSlider();
+		speedSlider = new JSlider(MIN_SLIDER_VAL, MAX_SLIDER_VAL);
 		aliveCell = new JRadioButton("Alive");
 		deadCell = new JRadioButton("Dead");
 		
@@ -36,6 +39,7 @@ public class ButtonsPanel extends JPanel {
 		group.add(deadCell);
 		
 		aliveCell.setSelected(true);
+		speedSlider.setInverted(true);
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 		add(startButton);

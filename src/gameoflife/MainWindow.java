@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
 	private static final int WINDOW_WIDTH = 500;
@@ -17,19 +19,18 @@ public class MainWindow extends JFrame {
 	
 	private static final String TITLE = "John Conway's Game of Life";
 	
-	private static final double INITIAL_SPEED = 100;
+	private static final int INITIAL_SPEED = 100;
+	private static final double SPEED_FACTOR = 100;
 	
 	private ButtonsPanel buttonsPanel;
 	private Environment environment;
 	private Timer timer;
-	private double speed;
 	
 	public MainWindow() {
 		buttonsPanel = new ButtonsPanel();
 		environment = new Environment();
-		speed = INITIAL_SPEED;
 		
-		timer = new Timer((int) speed, new ActionListener() {
+		timer = new Timer(INITIAL_SPEED, new ActionListener() {
 			@Override
 		    public void actionPerformed(ActionEvent ae) {
 		        environment.runGeneration();
@@ -82,6 +83,15 @@ public class MainWindow extends JFrame {
 		});
 	}
 	
+	private void setSliderListener() {
+		buttonsPanel.getSpeedSlider().addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent event) {
+				timer.setDelay(
+						(int) (buttonsPanel.getSpeedSlider().getValue() * SPEED_FACTOR));
+			}
+	    });
+	}
+	
 	private void setRadioButtonsListeners() {
 		buttonsPanel.getAliveCell().addActionListener(new ActionListener() {
 			@Override
@@ -100,6 +110,7 @@ public class MainWindow extends JFrame {
 	
 	private void setListeners() {
 		setButtonsListeners();
+		setSliderListener();
 		setRadioButtonsListeners();
 	}
 	
